@@ -7,7 +7,8 @@ var router = express.Router();
 
 // sets router to accept get request from home page
 router.get('/tasks', function(req, res, next){
-    res.send('TASK API');
+    //sends what I want to the api/tasks page
+    res.send('Hello there billy');
 });
 
 

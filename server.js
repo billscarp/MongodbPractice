@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 // To routes folder.  Index file and task api to be created with mongo.db
 var index = require('./routes/index');
-var tasks = require('./tasks/index');
+var tasks = require('./routes/tasks');
 
 // Server port
 var port = 3000;
@@ -17,7 +17,7 @@ var app = express();
 // View Engine
 
 //folder to use for views/ tells system that our views are going to be in the views folder
-app.set('views', path.join(_dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 // Tell where the engine is / letting it know that I am using ejs
 
@@ -29,7 +29,7 @@ app.engine('html', require('ejs').renderFile);
 
 // Static folder to set angular info.. will go into client folder
 
-app.use(express.static(path.join(_dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 // Body Parser Middle Ware
 
