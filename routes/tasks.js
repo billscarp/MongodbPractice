@@ -51,9 +51,32 @@ router.post('/task', function(req, res, next){
         res.json({
             "error": "Bad Data"
         });
+    }else {
+        db.tasks.save(task, function (err, task) {
+            if(err) {
+                res.send(err);
+            }
+                res.json(task);
+        })
     }
 
 });
+
+// Delete a task
+router.delete('/task/:id', function(req, res, next){
+    
+        db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, task) {
+            if(err){
+                // if err, return error
+                res.send(err);
+            }   // if not, return json file
+                res.json(task);
+    
+    
+        });
+    });
+
+
 
 
 
