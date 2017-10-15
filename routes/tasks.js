@@ -76,6 +76,38 @@ router.delete('/task/:id', function(req, res, next){
         });
     });
 
+    // Update a task / put request updates data that is already on the server
+router.put('/task/:id', function(req, res, next){
+    // Get information from form
+
+    var task = request.body;
+    var updTask = {};
+
+    if (task.isDone) {
+        updTask.isDone = task.isDone;
+    }
+
+    if (task.title) {
+        updTask.title = task.title;
+    }
+
+    if (!updTask) {
+        res.status(400);
+        res.json({
+            "error": "Bad Data"
+        })
+    } else {
+        db.tasks.update({_id: mongojs.ObjectId(req.params.id)}, updTask, {}, function(err, task) {
+            if(err){
+                // if err, return error
+                res.send(err);
+            }   // if not, return json file
+                res.json(task);
+        });
+    }
+
+ });
+
 
 
 
