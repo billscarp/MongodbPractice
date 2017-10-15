@@ -42,6 +42,21 @@ router.get('/task/:id', function(req, res, next){
     });
 });
 
+// Save tasks
+
+router.post('/task', function(req, res, next){
+    var task = req.body;
+    if (! task.title || (task.isDone + '')) {
+        res.status(400);
+        res.json({
+            "error": "Bad Data"
+        });
+    }
+
+});
+
+
+
 
 
 
